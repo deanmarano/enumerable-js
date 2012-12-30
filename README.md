@@ -4,7 +4,7 @@
 After having been a Ruby programmer for a year, I've found that
 one of my favorite parts of Ruby is the Enumerable module. Any seasoned
 Rubyist will extoll it's virtues and always try to use the best function
-for the job. While the ![Underscore library ](http://underscorejs.org/)
+for the job. While the [Underscore](http://underscorejs.org/) library
 provides the majority of these functions, it requires a slightly different
 syntax, which is slightly less pleasing to the eye. My goal was to make
 the transition from Ruby to Javascript (or hopefully Coffeescript) an easier
@@ -113,6 +113,7 @@ primitives (string, number, boolean, null, undefined). This is due to the fact t
 primitives can't be modified (and as such are basically passed by value) whereas objects
 are passed by reference. A way around this is by wrapping your primative in
 a simple object.
+
 ```coffeescript
 [1,2,3,4].eachWithObject {value: 0}, fn(sum, item)-> sum.value += item
 # returns {value: 10}
