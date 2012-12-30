@@ -1,9 +1,9 @@
-class Enumerator
+class window.Enumerator
   aliases:
     collect: 'map'
     entries: 'toA'
     find: 'detect'
-    find_all: 'select'
+    findAll: 'select'
     member: 'include'
     reduce: 'inject'
 
