@@ -138,6 +138,14 @@ as in the example, you will get the following additional functions:
 * sort
 * sortBy
 
+### Warning
+Totally untested in the real world.
+TODO: Test that it doesn't cause issues with the following libraries.
+
+* jQuery
+* Underscore.js
+* Backbone.js
+
 ## Specs
 Jasmine specs were used through npm. To install jasmine-node:
 ```
