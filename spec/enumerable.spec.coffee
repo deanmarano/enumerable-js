@@ -1,12 +1,27 @@
-require '../enumerable'
+enumerable = require '../enumerable.coffee'
 
-describe 'Enumerator', ->
+describe 'Enumerable', ->
+  it 'creates enumerable objects', ->
+    class FakeClass
+      children: [1,2,3]
+      each: (fn)->
+        for child in @children
+          fn(child)
+
+    enumerable.makeEnumerable(FakeClass.prototype)
+    instance = new FakeClass
+    result = instance.collect (i)-> i + 1
+    expect(result.count()).toBe(3)
+    expect(result[0]).toBe(2)
+    expect(result[1]).toBe(3)
+    expect(result[2]).toBe(4)
+
 
 describe 'an enumerable array', ->
   describe 'each', ->
     it 'returns an enumerator when called with no args', ->
       enumerator = [1,2,3].each()
-      expect(enumerator.constructor.name).toBe 'Enumerator'
+      expect(enumerator.constructor.name).toBe 'Enumerable'
 
     it 'returns an enumerator when called with no args', ->
       enumerator = [1,2,3].each()

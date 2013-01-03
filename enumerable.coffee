@@ -1,4 +1,4 @@
-class window.Enumerator
+class Enumerable
   aliases:
     collect: 'map'
     entries: 'toA'
@@ -22,6 +22,7 @@ class window.Enumerator
       'groupBy'
       'include'
       'inject'
+      'map'
       'none'
       'one'
       'partition'
@@ -39,14 +40,13 @@ class window.Enumerator
 
   addFunctionsToObj: (obj)->
     @functions.each (method)=>
-      obj[method] = @[method]
+      obj[method] = @[method] unless obj[method]
 
     @obj.enumerator = @
 
   addAliasesToObj: (obj)->
-    for alias, method in @aliases
-      obj[alias] = @[method]
-
+    for alias, method of @aliases
+      obj[alias] = @[method] unless obj[alias]
 
   eachWithIndex: (fn)->
     index = 0
@@ -210,6 +210,9 @@ class window.Enumerator
       result[key] ||= []
       result[key].push(item)
 
+  @makeEnumerable = (obj)->
+    new Enumerable(obj)
+
 Array.prototype.each = (fn)->
 
   return @enumerator unless fn
@@ -217,4 +220,8 @@ Array.prototype.each = (fn)->
     fn(item)
   @
 
-new Enumerator(Array.prototype)
+Enumerable.makeEnumerable(Array.prototype)
+
+window['Enumerable'] = Enumerable if window?
+module.exports = Enumerable if module?
+
